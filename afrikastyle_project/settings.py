@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-dm_()$2n9m_q%rp_k(03#9%7t1w$&xeth7tq)%xk6zdwg)tv)j
 DEBUG = True
 
 ALLOWED_HOSTS = ['afrikastyle.onrender.com', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://afrikastyle.onrender.com']
 
 
 # Application definition
