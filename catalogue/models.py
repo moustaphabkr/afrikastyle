@@ -4,7 +4,6 @@ from django.utils.text import slugify
 class Categorie(models.Model):
     nom = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
-    
     parent = models.ForeignKey(
         'self', 
         on_delete=models.CASCADE, 
@@ -30,11 +29,8 @@ class Categorie(models.Model):
 
 class Produit(models.Model):
     nom = models.CharField(max_length=200)
-    description = models.TextField(blank=True, null=True)
-    # Correction ici : decimal_places au lieu de decimal_digits
-    prix = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    image = models.ImageField(upload_to='produits/', blank=True, null=True)
-    lien_affiliation = models.URLField(max_length=500)
+    image_url = models.URLField(max_length=1000)  # Ton lien ImgBB / Amazon direct
+    lien_affiliation = models.URLField(max_length=1000)  # Ton lien d'affiliation
     date_ajout = models.DateTimeField(auto_now_add=True)
     
     categorie = models.ForeignKey(

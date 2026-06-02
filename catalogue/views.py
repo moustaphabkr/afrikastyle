@@ -2,10 +2,10 @@ from django.shortcuts import render
 from .models import Categorie, Produit
 
 def home(request):
-    # On récupère uniquement les catégories qui n'ont pas de parent (les catégories racines)
+    # On prend uniquement les catégories racines (ex: Femme)
     categories_principales = Categorie.objects.filter(parent__isnull=True)
     
-    # Optionnel : On peut aussi récupérer les 4 derniers produits ajoutés pour faire une section "Nouveautés"
+    # On prend les 4 derniers produits ajoutés pour les coups de cœur
     nouveautes = Produit.objects.order_by('-date_ajout')[:4]
     
     context = {
