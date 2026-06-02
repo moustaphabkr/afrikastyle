@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Produit
 
 def home(request):
     # On récupère tous les produits de la base de données
