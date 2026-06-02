@@ -65,7 +65,7 @@
                     <div>
                         <h3 class="fw-bold mb-2">{{ cat.nom }}</h3>
                         <p class="text-muted small">Explorez notre sélection unique</p>
-                        <a href="#" class="btn btn-dark mt-2 px-4 rounded-pill btn-sm">Découvrir</a>
+                        <a href="{% url 'categorie_detail' cat.slug %}" class="btn btn-dark mt-2 px-4 rounded-pill btn-sm">Découvrir</a>
                     </div>
                 </div>
             </div>

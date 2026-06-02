@@ -29,9 +29,12 @@ class Categorie(models.Model):
 
 class Produit(models.Model):
     nom = models.CharField(max_length=200)
-    image_url = models.URLField(max_length=1000)  # Ton lien ImgBB / Amazon direct
-    lien_affiliation = models.URLField(max_length=1000)  # Ton lien d'affiliation
+    image_url = models.URLField(max_length=1000)
+    lien_affiliation = models.URLField(max_length=1000)
     date_ajout = models.DateTimeField(auto_now_add=True)
+    
+    # LA NOUVELLE CASE À COCHER :
+    coup_de_coeur = models.BooleanField(default=False, verbose_name="Afficher dans les Coups de Cœur")
     
     categorie = models.ForeignKey(
         Categorie, 
