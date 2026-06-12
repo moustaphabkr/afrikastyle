@@ -1,10 +1,9 @@
-{% load i18n %}<!-- 1. ON CHARGE LE MODULE DE TRADUCTION ICI -->
 <!DOCTYPE html>
-<html lang="{{ request.LANGUAGE_CODE }}"> <!-- 2. DÉTECTION AUTOMATIQUE DE LA LANGUE -->
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfrikaStyle - {% translate "Vos inspirations Mode" %}</title>
+    <title>AfrikaStyle - Vos inspirations Mode</title>
     <!-- Polices Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
@@ -50,35 +49,17 @@
 </head>
 <body>
 
-    <!-- 3. LE SÉLECTEUR DE LANGUE (FR / EN) -->
-    <div class="container text-end pt-3">
-        <form action="{% url 'set_language' %}" method="post" class="d-inline">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ request.get_full_path }}">
-            <select name="language" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block w-auto rounded-pill border-0 shadow-sm bg-white px-3 text-muted">
-                {% get_current_language as CURRENT_LANG %}
-                {% get_available_languages as AVAILABLE_LANGS %}
-                {% get_language_info_list for AVAILABLE_LANGS as langs %}
-                {% for lang in langs %}
-                    <option value="{{ lang.code }}" {% if lang.code == CURRENT_LANG %}selected{% endif %}>
-                        {{ lang.name_local|capfirst }}
-                    </option>
-                {% endfor %}
-            </select>
-        </form>
-    </div>
-
     <!-- Bannière Hero -->
     <header class="hero mb-5">
         <div>
             <h1 class="display-2">AfrikaStyle</h1>
-            <p class="lead">{% translate "L'élégance du continent à portée de clic." %}</p>
+            <p class="lead">L'élégance du continent à portée de clic.</p>
         </div>
     </header>
 
     <!-- SECTION 1 : Les Catégories Principales -->
     <div class="container mb-5">
-        <h2 class="mb-4 text-center">{% translate "Nos Collections" %}</h2>
+        <h2 class="mb-4 text-center">Nos Collections</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
             {% for cat in categories %}
             <div class="col col-lg-5">
@@ -86,14 +67,14 @@
                     <div>
                         <!-- Note : Le nom de la catégorie vient de la base de données -->
                         <h3 class="fw-bold mb-2">{{ cat.nom }}</h3>
-                        <p class="text-muted small">{% translate "Explorez notre sélection unique" %}</p>
-                        <a href="{% url 'categorie_detail' cat.slug %}" class="btn btn-dark mt-2 px-4 rounded-pill btn-sm">{% translate "Découvrir" %}</a>
+                        <p class="text-muted small">Explorez notre sélection unique</p>
+                        <a href="{% url 'categorie_detail' cat.slug %}" class="btn btn-dark mt-2 px-4 rounded-pill btn-sm">Découvrir</a>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-12 text-center">
-                <p class="text-muted">{% translate "Créez vos catégories (ex: Femme) dans l'admin Django." %}</p>
+                <p class="text-muted">Créez vos catégories (ex: Femme) dans l'admin Django.</p>
             </div>
             {% endfor %}
         </div>
@@ -103,7 +84,7 @@
 
     <!-- SECTION 2 : Les Coups de Cœur -->
     <div class="container mb-5">
-        <h2 class="mb-5 text-center">{% translate "Nos Coups de Cœur" %}</h2>
+        <h2 class="mb-5 text-center">Nos Coups de Cœur</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for produit in nouveautes %}
             <div class="col">
@@ -130,14 +111,14 @@
                         <a href="{{ produit.url_affiliation }}" 
                            target="_blank" 
                            class="btn btn-dark w-100 mt-auto">
-                           {% translate "Voir le produit" %}
+                            Voir le produit
                         </a>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-12 text-center">
-                <p class="text-muted">{% translate "Aucun produit disponible. Ajoutez des articles dans votre espace admin !" %}</p>
+                <p class="text-muted">Aucun produit disponible. Ajoutez des articles dans votre espace admin !</p>
             </div>
             {% endfor %}
         </div>
