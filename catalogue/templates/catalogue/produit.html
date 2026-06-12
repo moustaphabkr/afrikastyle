@@ -95,23 +95,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
     
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('open_slider') === 'true') {
-            // On cherche n'importe quel élément avec l'attribut data-lightbox
-            // Cela évite les erreurs si le nom de l'ID est légèrement différent
-            const firstImageLink = document.querySelector('[data-lightbox]');
-            
-            if (firstImageLink) {
-                console.log("Slider trouvé, ouverture dans 500ms");
-                setTimeout(function() {
-                    firstImageLink.click();
-                }, 500);
-            } else {
-                console.log("Aucun élément avec data-lightbox trouvé");
+        if (urlParams.has('open_slider')) {
+            // Remplace 'ton_id_slider' par l'ID réel de ton élément de galerie
+            const sliderTrigger = document.querySelector('#ton_id_slider'); 
+            if (sliderTrigger) {
+                sliderTrigger.click();
             }
         }
-    });
+    };
     </script>
 </body>
 </html>
