@@ -38,6 +38,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'afrikastyle_project.middleware.MaintenanceMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Gère le CSS en production
     'django.contrib.sessions.middleware.SessionMiddleware',
