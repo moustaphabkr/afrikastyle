@@ -2,14 +2,59 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Maintenance en cours</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 100px; }
-        h1 { color: #333; }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Utilisation d'une police système élégante et sobre */
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #fdf5e6; /* Un blanc cassé très doux (OldLace) */
+            
+            /* Ton image en arrière-plan */
+            background: 
+                linear-gradient(rgba(45, 30, 20, 0.75), rgba(45, 30, 20, 0.75)),
+                url('https://i.ibb.co/VcgVFVXV/maintenance.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            max-width: 600px;
+        }
+
+        h1 {
+            /* Couleur inspirée des tons ambrés de l'image */
+            color: #d4a373; 
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            /* Couleur sable clair pour la lisibilité */
+            color: #e9edc9; 
+        }
+
+        .highlight {
+            color: #faedcd;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>🛠️ Maintenance en cours</h1>
-    <p>Nous améliorons le site pour vous. Nous revenons très bientôt !</p>
+    <div class="container">
+        <h1>Maintenance</h1>
+        <p>Notre atelier numérique est en cours de <span class="highlight">transformation</span> pour mieux vous servir.</p>
+        <p>AfrikaStyle sera de retour très bientôt avec de nouvelles inspirations.</p>
+    </div>
 </body>
 </html>
