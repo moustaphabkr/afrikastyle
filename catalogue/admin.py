@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Categorie, Produit
+from .models import Categorie, Produit, ImageProduit
+
+# Ajout de la configuration pour les images multiples
+class ImageProduitInline(admin.TabularInline):
+    model = ImageProduit
+    extra = 1  # Affiche 1 case vide par défaut pour ajouter une image
 
 @admin.register(Categorie)
 class CategorieAdmin(admin.ModelAdmin):
@@ -11,3 +16,5 @@ class CategorieAdmin(admin.ModelAdmin):
 class ProduitAdmin(admin.ModelAdmin):
     list_display = ['nom', 'categorie']
     list_filter = ['categorie']
+    # On indique à Django d'afficher les images additionnelles ici
+    inlines = [ImageProduitInline]

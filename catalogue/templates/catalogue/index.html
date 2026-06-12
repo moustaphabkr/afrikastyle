@@ -1,13 +1,16 @@
+{% load i18n %}<!-- 1. ON CHARGE LE MODULE DE TRADUCTION ICI -->
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ request.LANGUAGE_CODE }}"> <!-- 2. DÉTECTION AUTOMATIQUE DE LA LANGUE -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfrikaStyle - Vos inspirations Mode</title>
+    <title>AfrikaStyle - {% translate "Vos inspirations Mode" %}</title>
     <!-- Polices Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lightbox2 CSS (Pour le zoom de l'image) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #fcfbf9; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
@@ -26,7 +29,7 @@
         
         .card { border: none; border-radius: 15px; transition: transform 0.3s; }
         .card:hover { transform: translateY(-10px); }
-        .product-img { height: 320px; object-fit: cover; border-radius: 15px 15px 0 0; }
+        .product-img { height: 320px; object-fit: cover; border-radius: 15px 15px 0 0; cursor: zoom-in; }
         .badge { background-color: #d4a373 !important; }
         
         .category-box {
@@ -47,31 +50,50 @@
 </head>
 <body>
 
+    <!-- 3. LE SÉLECTEUR DE LANGUE (FR / EN) -->
+    <div class="container text-end pt-3">
+        <form action="{% url 'set_language' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path }}">
+            <select name="language" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block w-auto rounded-pill border-0 shadow-sm bg-white px-3 text-muted">
+                {% get_current_language as CURRENT_LANG %}
+                {% get_available_languages as AVAILABLE_LANGS %}
+                {% get_language_info_list for AVAILABLE_LANGS as langs %}
+                {% for lang in langs %}
+                    <option value="{{ lang.code }}" {% if lang.code == CURRENT_LANG %}selected{% endif %}>
+                        {{ lang.name_local|capfirst }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+
     <!-- Bannière Hero -->
     <header class="hero mb-5">
         <div>
             <h1 class="display-2">AfrikaStyle</h1>
-            <p class="lead">L'élégance du continent à portée de clic.</p>
+            <p class="lead">{% translate "L'élégance du continent à portée de clic." %}</p>
         </div>
     </header>
 
     <!-- SECTION 1 : Les Catégories Principales -->
     <div class="container mb-5">
-        <h2 class="mb-4 text-center">Nos Collections</h2>
+        <h2 class="mb-4 text-center">{% translate "Nos Collections" %}</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
             {% for cat in categories %}
             <div class="col col-lg-5">
                 <div class="card shadow-lg category-box">
                     <div>
+                        <!-- Note : Le nom de la catégorie vient de la base de données -->
                         <h3 class="fw-bold mb-2">{{ cat.nom }}</h3>
-                        <p class="text-muted small">Explorez notre sélection unique</p>
-                        <a href="{% url 'categorie_detail' cat.slug %}" class="btn btn-dark mt-2 px-4 rounded-pill btn-sm">Découvrir</a>
+                        <p class="text-muted small">{% translate "Explorez notre sélection unique" %}</p>
+                        <a href="{% url 'categorie_detail' cat.slug %}" class="btn btn-dark mt-2 px-4 rounded-pill btn-sm">{% translate "Découvrir" %}</a>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-12 text-center">
-                <p class="text-muted">Créez vos catégories (ex: Femme) dans l'admin Django.</p>
+                <p class="text-muted">{% translate "Créez vos catégories (ex: Femme) dans l'admin Django." %}</p>
             </div>
             {% endfor %}
         </div>
@@ -81,39 +103,47 @@
 
     <!-- SECTION 2 : Les Coups de Cœur -->
     <div class="container mb-5">
-        <h2 class="mb-5 text-center">Nos Coups de Cœur</h2>
+        <h2 class="mb-5 text-center">{% translate "Nos Coups de Cœur" %}</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for produit in nouveautes %}
             <div class="col">
                 <div class="card h-100 shadow-lg">
-                    <!-- Image cliquable (Lien ImgBB) -->
-                    <a href="{{ produit.lien_affiliation }}" target="_blank">
+                    
+                    <!-- Image principale avec effet Zoom Lightbox -->
+                    <a href="{{ produit.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}">
                         <img src="{{ produit.image_url }}" class="card-img-top product-img" alt="{{ produit.nom }}">
                     </a>
                     
+                    <!-- Galerie cachée pour charger les images additionnelles dans le slider Lightbox -->
+                    {% for img_sup in produit.images.all %}
+                        <a href="{{ img_sup.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}" style="display: none;"></a>
+                    {% endfor %}
+                    
                     <div class="card-body d-flex flex-column">
-                        <!-- Fil d'Ariane Categorie -->
+                        <!-- Categorie -->
                         <span class="badge mb-2 align-self-start">{{ produit.categorie }}</span>
                         
                         <!-- Nom du produit -->
                         <h5 class="card-title fw-bold text-dark mb-4">{{ produit.nom }}</h5>
                         
                         <!-- Bouton d'action direct -->
-                        <a href="{{ produit.lien_affiliation }}" 
+                        <a href="{{ produit.url_affiliation }}" 
                            target="_blank" 
                            class="btn btn-dark w-100 mt-auto">
-                           Voir le produit
+                           {% translate "Voir le produit" %}
                         </a>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-12 text-center">
-                <p class="text-muted">Aucun produit disponible. Ajoutez des articles dans votre espace admin !</p>
+                <p class="text-muted">{% translate "Aucun produit disponible. Ajoutez des articles dans votre espace admin !" %}</p>
             </div>
             {% endfor %}
         </div>
     </div>
 
+    <!-- Lightbox2 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
 </body>
 </html>

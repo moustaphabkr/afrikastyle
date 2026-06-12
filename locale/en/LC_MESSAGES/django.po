@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-12 11:23+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\afrikastyle_project\settings.py:124
+msgid "Français"
+msgstr "French"
+
+#: .\afrikastyle_project\settings.py:125
+msgid "English"
+msgstr "English"
+
+#: .\catalogue\templates\catalogue\index.html:7
+msgid "Vos inspirations Mode"
+msgstr "Your Fashion Inspirations"
+
+#: .\catalogue\templates\catalogue\index.html:75
+msgid "L'élégance du continent à portée de clic."
+msgstr "The continent's elegance at your fingertips."
+
+#: .\catalogue\templates\catalogue\index.html:81
+msgid "Nos Collections"
+msgstr "Our Collections"
+
+#: .\catalogue\templates\catalogue\index.html:89
+msgid "Explorez notre sélection unique"
+msgstr "Explore our unique selection"
+
+#: .\catalogue\templates\catalogue\index.html:90
+msgid "Découvrir"
+msgstr "Discover"
+
+#: .\catalogue\templates\catalogue\index.html:96
+msgid "Créez vos catégories (ex: Femme) dans l'admin Django."
+msgstr "Create your categories (e.g., Women) in the Django admin."
+
+#: .\catalogue\templates\catalogue\index.html:106
+msgid "Nos Coups de Cœur"
+msgstr "Our Favorites"
+
+#: .\catalogue\templates\catalogue\index.html:133
+msgid "Voir le produit"
+msgstr "View Product"
+
+#: .\catalogue\templates\catalogue\index.html:140
+msgid ""
+"Aucun produit disponible. Ajoutez des articles dans votre espace admin !"
+msgstr "No products available. Add items in your admin space!"
