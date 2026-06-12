@@ -94,19 +94,24 @@
     <!-- Script Lightbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
     
-    <!-- Script d'ouverture automatique pour Pinterest -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('open_slider') === 'true') {
-                const firstImageLink = document.querySelector('[data-lightbox="galerie-produit-{{ produit.id }}"]');
-                if (firstImageLink) {
-                    setTimeout(function() {
-                        firstImageLink.click();
-                    }, 500);
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('open_slider') === 'true') {
+            // On cherche n'importe quel élément avec l'attribut data-lightbox
+            // Cela évite les erreurs si le nom de l'ID est légèrement différent
+            const firstImageLink = document.querySelector('[data-lightbox]');
+            
+            if (firstImageLink) {
+                console.log("Slider trouvé, ouverture dans 500ms");
+                setTimeout(function() {
+                    firstImageLink.click();
+                }, 500);
+            } else {
+                console.log("Aucun élément avec data-lightbox trouvé");
             }
-        });
+        }
+    });
     </script>
 </body>
 </html>
