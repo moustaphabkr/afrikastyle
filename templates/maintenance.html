@@ -10,51 +10,50 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Utilisation d'une police système élégante et sobre */
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #fdf5e6; /* Un blanc cassé très doux (OldLace) */
+            font-family: 'Georgia', serif; /* Police élégante et classique */
             
-            /* Ton image en arrière-plan */
-            background: 
-                linear-gradient(rgba(45, 30, 20, 0.75), rgba(45, 30, 20, 0.75)),
-                url('https://i.ibb.co/VcgVFVXV/maintenance.png');
+            /* Utilisation directe de ton image, sans filtre sombre */
+            background-image: url('https://i.ibb.co/VcgVFVXV/maintenance.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
         .container {
             text-align: center;
-            padding: 50px;
-            max-width: 600px;
+            padding: 40px;
+            /* Une couleur crème très légère pour le texte, bien lisible sur le fond chaud */
+            color: #fdf5e6; 
         }
 
         h1 {
-            /* Couleur inspirée des tons ambrés de l'image */
-            color: #d4a373; 
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            /* Couleur dorée douce pour correspondre à l'ambiance */
+            color: #e5c1a0; 
         }
 
         p {
-            font-size: 1.2em;
-            line-height: 1.8;
-            /* Couleur sable clair pour la lisibilité */
-            color: #e9edc9; 
+            font-size: 1.3em;
+            margin: 10px 0;
+            font-weight: 300;
         }
 
-        .highlight {
-            color: #faedcd;
-            font-weight: bold;
+        .logo {
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            color: #d4a373;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Maintenance</h1>
-        <p>Notre atelier numérique est en cours de <span class="highlight">transformation</span> pour mieux vous servir.</p>
-        <p>AfrikaStyle sera de retour très bientôt avec de nouvelles inspirations.</p>
+        <div class="logo">AFRIKASTYLE</div>
+        <h1>Nous revenons très bientôt</h1>
+        <p>MERCI POUR VOTRE PATIENCE</p>
     </div>
 </body>
 </html>
