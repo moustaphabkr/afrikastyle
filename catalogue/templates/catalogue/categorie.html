@@ -77,14 +77,16 @@
             <div class="col">
                 <div class="card h-100 shadow-lg">
                     
-                    <!-- Lien sécurisé vers la page de détail unique du produit -->
+                    <!-- CORRECTION : Image réintégrée et conditionnée -->
                     {% if produit.slug %}
                         <a href="{% url 'produit_detail' produit.slug %}">
+                            <img src="{{ produit.image_url }}" class="card-img-top product-img" alt="{{ produit.nom }}">
+                        </a>
                     {% else %}
-                        <a href="#">
+                        <img src="{{ produit.image_url }}" class="card-img-top product-img" alt="{{ produit.nom }}">
                     {% endif %}
                     
-                    <!-- CORRECTION 2 : Boucle cachée pour charger les autres images du produit dans le slider -->
+                    <!-- CORRECTION : Boucle cachée pour charger les autres images du produit dans le slider -->
                     {% for img_sup in produit.images.all %}
                         <a href="{{ img_sup.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}" style="display: none;"></a>
                     {% endfor %}
@@ -93,7 +95,7 @@
                         <span class="badge mb-2 align-self-start">{{ produit.categorie.nom }}</span>
                         <h5 class="card-title fw-bold text-dark mb-4">{{ produit.nom }}</h5>
                         
-                        <!-- CORRECTION 3 : Bouton harmonisé sur url_affiliation avec texte dynamique selon la plateforme -->
+                        <!-- CORRECTION : Bouton harmonisé sur url_affiliation avec texte dynamique selon la plateforme -->
                         <a href="{{ produit.url_affiliation }}" target="_blank" class="btn btn-dark w-100 mt-auto">
                             {% if "amazon" in produit.url_affiliation %}
                                 Voir le produit sur Amazon
