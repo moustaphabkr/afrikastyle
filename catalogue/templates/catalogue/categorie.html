@@ -77,11 +77,10 @@
             <div class="col">
                 <div class="card h-100 shadow-lg">
                     
-                    <!-- CORRECTION 1 : Liaison de la photo principale à la Lightbox (Slider) au lieu d'un lien sortant -->
-                    <a href="{{ produit.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}">
+                    <!-- Lien vers la page de détail unique du produit -->
+                    <a href="{% url 'produit_detail' produit.slug %}">
                         <img src="{{ produit.image_url }}" class="card-img-top product-img" alt="{{ produit.nom }}">
                     </a>
-                    
                     <!-- CORRECTION 2 : Boucle cachée pour charger les autres images du produit dans le slider -->
                     {% for img_sup in produit.images.all %}
                         <a href="{{ img_sup.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}" style="display: none;"></a>

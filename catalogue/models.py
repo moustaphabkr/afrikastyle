@@ -29,12 +29,10 @@ class Categorie(models.Model):
 
 class Produit(models.Model):
     nom = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True) # AJOUT
     image_url = models.URLField(max_length=1000)
-    # Modification : renommage de lien_affiliation en url_affiliation
     url_affiliation = models.URLField(max_length=1000)
     date_ajout = models.DateTimeField(auto_now_add=True)
-    
-    # LA NOUVELLE CASE À COCHER :
     coup_de_coeur = models.BooleanField(default=False, verbose_name="Afficher dans les Coups de Cœur")
     
     categorie = models.ForeignKey(
@@ -46,6 +44,12 @@ class Produit(models.Model):
     class Meta:
         verbose_name = "Produit"
         verbose_name_plural = "Produits"
+
+    # AJOUT : Génération automatique du slug au moment de la sauvegarde
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.nom)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.nom

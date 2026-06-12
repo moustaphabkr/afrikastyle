@@ -40,3 +40,12 @@ def categorie_detail(request, slug):
         'produits': produits,
     }
     return render(request, 'catalogue/categorie.html', context)
+
+def produit_detail(request, slug):
+    # On récupère le produit grâce à son slug unique
+    produit = get_object_or_404(Produit, slug=slug)
+    
+    context = {
+        'produit': produit,
+    }
+    return render(request, 'catalogue/produit.html', context)
