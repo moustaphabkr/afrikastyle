@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance en cours</title>
     <style>
         body {
             margin: 0;
@@ -10,9 +12,9 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Georgia', serif; /* Police élégante et classique */
+            font-family: 'Georgia', serif;
             
-            /* Utilisation directe de ton image, sans filtre sombre */
+            /* Ton image sans filtre sombre pour garder sa luminosité naturelle */
             background-image: url('https://i.ibb.co/VcgVFVXV/maintenance.png');
             background-size: cover;
             background-position: center;
@@ -22,22 +24,7 @@
         .container {
             text-align: center;
             padding: 40px;
-            /* Une couleur crème très légère pour le texte, bien lisible sur le fond chaud */
-            color: #fdf5e6; 
-        }
-
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            /* Couleur dorée douce pour correspondre à l'ambiance */
-            color: #e5c1a0; 
-        }
-
-        p {
-            font-size: 1.3em;
-            margin: 10px 0;
-            font-weight: 300;
+            color: #fdf5e6; /* Couleur crème douce */
         }
 
         .logo {
@@ -47,18 +34,43 @@
             margin-bottom: 30px;
             color: #d4a373;
         }
+
+        /* Titre principal : Le plus large */
+        h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #e5c1a0;
+            line-height: 1.1;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Légère ombre pour la lisibilité */
+        }
+
+        /* Premier sous-titre : Moyen */
+        .subtitle-main {
+            font-size: 2em;
+            margin: 10px 0;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Deuxième sous-titre : Le plus petit */
+        .subtitle-small {
+            font-size: 1.5em;
+            margin: 5px 0;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-    <div class="logo">AFRIKASTYLE</div>
-    
-    <!-- Titre clair -->
-    <h1>Maintenance en cours</h1>
-    
-    <!-- Message chaleureux -->
-    <p>Nous revenons très bientôt.</p>
-    <p>Merci pour votre patience.</p>
-</div>
+        <div class="logo">AFRIKASTYLE</div>
+        
+        <h1>Maintenance en cours</h1>
+        
+        <div class="subtitle-main">Nous revenons très bientôt.</div>
+        <div class="subtitle-small">Merci pour votre patience.</div>
+    </div>
 </body>
 </html>
