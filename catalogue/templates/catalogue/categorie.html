@@ -24,11 +24,29 @@
 </head>
 <body>
 
-    <!-- Fil d'Ariane pour revenir en arrière facilement -->
+    <!-- CORRECTION : Fil d'Ariane entièrement dynamique (Multi-niveaux) -->
     <div class="container mt-4">
         <a href="{% url 'home' %}" class="breadcrumb-link">Accueil</a> 
+        
+        <!-- ÉTAPE 1 : Si on est au niveau 3 (ex: Robes), on remonte jusqu'au grand-parent (ex: Femme) -->
+        {% if categorie.parent.parent %}
+            <span class="text-muted small"> > </span>
+            <a href="{% url 'categorie_detail' categorie.parent.parent.slug %}" class="breadcrumb-link">
+                {{ categorie.parent.parent.nom }}
+            </a>
+        {% endif %}
+
+        <!-- ÉTAPE 2 : Si la catégorie a un parent direct (ex: Vêtements, Accessoires & Sacs) -->
+        {% if categorie.parent %}
+            <span class="text-muted small"> > </span>
+            <a href="{% url 'categorie_detail' categorie.parent.slug %}" class="breadcrumb-link">
+                {{ categorie.parent.nom }}
+            </a>
+        {% endif %}
+        
+        <!-- ÉTAPE 3 : La catégorie sur laquelle on se trouve actuellement -->
         <span class="text-muted small"> > </span>
-        <span class="text-muted small fw-bold">{{ categorie.nom }}</span>
+        <span class="text-muted small fw-bold text-dark">{{ categorie.nom }}</span>
     </div>
 
     <!-- En-tête de la catégorie -->
