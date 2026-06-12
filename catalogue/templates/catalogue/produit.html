@@ -50,13 +50,13 @@
             
             <!-- Colonne Gauche : Image & Galerie Lightbox -->
             <div class="col-12 col-md-6">
-                <a href="{{ produit.image_url }}" data-lightbox="galerie-produit" data-title="{{ produit.nom }}">
+                <a href="{{ produit.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}">
                     <img src="{{ produit.image_url }}" class="product-main-img shadow" alt="{{ produit.nom }}">
                 </a>
                 
                 <!-- Boucle masquée pour charger les images supplémentaires dans le diaporama au clic -->
                 {% for img_sup in produit.images.all %}
-                    <a href="{{ img_sup.image_url }}" data-lightbox="galerie-produit" data-title="{{ produit.nom }}" style="display: none;"></a>
+                    <a href="{{ img_sup.image_url }}" data-lightbox="galerie-produit-{{ produit.id }}" data-title="{{ produit.nom }}" style="display: none;"></a>
                 {% endfor %}
                 <p class="text-center text-muted small mt-2">💡 Cliquez sur l'image pour l'agrandir et voir plus de photos</p>
             </div>
@@ -74,21 +74,39 @@
                 
                 <!-- Bouton d'action d'affiliation vers la boutique source -->
                 <a href="{{ produit.url_affiliation }}" target="_blank" class="btn btn-dark btn-lg w-100 py-3 rounded-pill shadow-sm">
-                    {% if "amazon" in produit.url_affiliation %}
-                        Acheter ce produit sur Amazon
-                    {% elif "temu" in produit.url_affiliation %}
-                        Acheter ce produit sur Temu
-                    {% elif "aliexpress" in produit.url_affiliation %}
-                        Acheter ce produit sur AliExpress
-                    {% else %}
-                        Acheter cet article
-                    {% endif %}
+                {% if "amzn.to" in produit.url_affiliation or "amazon" in produit.url_affiliation %}
+                    Acheter sur Amazon
+                {% elif "temu.to" in produit.url_affiliation or "temu" in produit.url_affiliation %}
+                    Acheter sur Temu
+                {% elif "s.click.aliexpress.com" in produit.url_affiliation or "aliexpress" in produit.url_affiliation %}
+                    Acheter sur AliExpress
+                {% elif "shein" in produit.url_affiliation %}
+                    Acheter sur Shein
+                {% else %}
+                    Commander maintenant
+                {% endif %}
                 </a>
             </div>
             
         </div>
     </div>
 
+    <!-- Script Lightbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+    
+    <!-- Script d'ouverture automatique pour Pinterest -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('open_slider') === 'true') {
+                const firstImageLink = document.querySelector('[data-lightbox="galerie-produit-{{ produit.id }}"]');
+                if (firstImageLink) {
+                    setTimeout(function() {
+                        firstImageLink.click();
+                    }, 500);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
