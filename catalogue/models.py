@@ -30,7 +30,8 @@ class Categorie(models.Model):
 class Produit(models.Model):
     nom = models.CharField(max_length=200)
     image_url = models.URLField(max_length=1000)
-    lien_affiliation = models.URLField(max_length=1000)
+    # Modification : renommage de lien_affiliation en url_affiliation
+    url_affiliation = models.URLField(max_length=1000)
     date_ajout = models.DateTimeField(auto_now_add=True)
     
     # LA NOUVELLE CASE À COCHER :
@@ -48,3 +49,12 @@ class Produit(models.Model):
 
     def __str__(self):
         return self.nom
+
+# Ajout du modèle pour les images additionnelles
+class ImageProduit(models.Model):
+    produit = models.ForeignKey(
+        Produit, 
+        on_delete=models.CASCADE, 
+        related_name='images'
+    )
+    image_url = models.URLField(max_length=1000)
